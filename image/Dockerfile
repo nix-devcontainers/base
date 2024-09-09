@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/vscode/devcontainers/base:bookworm
 
 ENV DEBIAN_FRONTEND=noninteractive \
     TERM=xterm-256color \
-    PATH=${PATH}:/home/vscode/.nix-profile/bin \
+    PATH=${PATH}:/home/vscode/.nix-profile/bin:/workspace/.devbox/nix/profile/default/bin \
     EDITOR=micro
 
 RUN apt-get -y update \

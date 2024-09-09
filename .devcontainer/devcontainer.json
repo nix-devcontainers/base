@@ -13,8 +13,5 @@
   },
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
   "workspaceFolder": "/workspace",
-  "remoteEnv": {
-    "PATH": "${containerEnv:PATH}:/workspace/.devbox/nix/profile/default/bin"
-  },
   "postCreateCommand": "echo 'exit' | devbox shell"
 }
