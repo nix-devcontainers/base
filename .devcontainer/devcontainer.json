@@ -11,10 +11,10 @@
       ]
     }
   },
-  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/debian-nix-container,type=bind,consistency=cached",
-  "workspaceFolder": "/workspaces/debian-nix-container",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+  "workspaceFolder": "/workspace",
   "remoteEnv": {
-    "PATH": "${containerEnv:PATH}:/workspaces/debian-nix-container/.devbox/nix/profile/default/bin"
+    "PATH": "${containerEnv:PATH}:/workspace/.devbox/nix/profile/default/bin"
   },
   "postCreateCommand": "echo 'exit\n' | devbox shell"
 }
