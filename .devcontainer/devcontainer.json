@@ -1,0 +1,20 @@
+{
+  "build": {
+    "dockerfile": "../image/Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "jetpack-io.devbox",
+        "rust-lang.rust-analyzer", // just for this project
+        "tamasfe.even-better-toml" // just for this project
+      ]
+    }
+  },
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/debian-nix-container,type=bind,consistency=cached",
+  "workspaceFolder": "/workspaces/debian-nix-container",
+  "remoteEnv": {
+    "PATH": "${containerEnv:PATH}:/workspaces/debian-nix-container/.devbox/nix/profile/default/bin"
+  },
+  "postCreateCommand": "echo 'exit\n' | devbox shell"
+}
