@@ -16,5 +16,5 @@
   "remoteEnv": {
     "PATH": "${containerEnv:PATH}:/workspace/.devbox/nix/profile/default/bin"
   },
-  "postCreateCommand": "echo 'exit\n' | devbox shell"
+  "postCreateCommand": "echo 'exit' | devbox shell"
 }
