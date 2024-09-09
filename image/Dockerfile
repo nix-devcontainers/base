@@ -9,9 +9,13 @@ RUN apt-get -y update \
         ca-certificates \
         sudo \
         xz-utils \
+        bash-completion \
+        micro \
     && apt-get -y autoclean \
     && apt-get -y clean \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && update-alternatives --install /usr/bin/nano nano /usr/bin/micro 1 \
+    && update-alternatives --install /usr/bin/vim vim /usr/bin/micro 1
 
 
 FROM base AS nix
@@ -34,7 +38,8 @@ COPY --link=true --from=nix --chown=vscode:vscode /home/vscode /home/vscode
 COPY --link=true --from=nix --chown=root:root --chmod=777 /usr/local/bin/devbox /usr/local/bin/devbox
 
 ENV TERM=xterm-256color \
-    PATH=${PATH}:/home/vscode/.nix-profile/bin
+    PATH=${PATH}:/home/vscode/.nix-profile/bin \
+    EDITOR=micro
 
 USER vscode
 WORKDIR /home/vscode
