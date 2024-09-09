@@ -1,8 +1,0 @@
-{
-    "rust-analyzer.server.extraEnv": {
-        "RUSTUP_HOME": "${workspaceFolder}/.devbox/virtenv/rustup"
-    },
-    "rust-analyzer.linkedProjects": [
-        "rust-example/Cargo.toml"
-    ]
-}
