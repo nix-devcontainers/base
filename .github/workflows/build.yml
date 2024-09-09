@@ -1,0 +1,36 @@
+name: Build base image
+
+
+on:
+  # manually
+  workflow_dispatch:
+  # each saturday at 0:00
+  schedule:
+    - cron: "0 0 * * 0"
+
+
+env:
+  GHCR_IMAGE: "ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:latest"
+
+
+jobs:
+  build:
+    permissions:
+      contents: read
+      packages: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push image
+        uses: docker/build-push-action@v6
+        with:
+          context: image
+          outputs: type=image,name=${{ env.GHCR_IMAGE }},push=true
